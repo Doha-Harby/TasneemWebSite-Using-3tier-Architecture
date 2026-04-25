@@ -23,23 +23,10 @@ namespace Tass_BLL.Mapper
                 .ForMember(dest => dest.IsEditMode, opt => opt.Ignore());
 
             // CreatePatientVM to Patients
-            CreateMap<CreatePatientVM, Patients>()
-                .ConstructUsing(src => new Patients(
-                    src.Name ?? string.Empty,
-                    src.Age,
-                    src.Hight,
-                    src.Job ?? string.Empty,
-                    src.Diagnosis ?? string.Empty,
-                    src.PhoneNumber ?? string.Empty,
-                    src.Notes ?? string.Empty
-                ));
-
+            CreateMap<CreatePatientVM, Patients>().ReverseMap();
             // Measurements Mappings
-            CreateMap<Measurements, MeasurementVM>()
-                .ReverseMap();
-
-            CreateMap<AddMeasurementVM, Measurements>()
-                .ReverseMap();
+            CreateMap<Measurements, MeasurementVM>().ReverseMap();            
+            CreateMap<AddMeasurementVM, Measurements>().ReverseMap();         
         }
     }
 }
