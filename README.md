@@ -21,7 +21,6 @@
     
     - **Data Access Layer (DAL)**  
       Manages database operations using repositories
-
   ---
   ## 📂 Project Structure 
       🏥 TasaneemWebSite (Solution)
@@ -29,29 +28,29 @@
       ├── 📦 Tass_BLL (Business Logic Layer)
       │   ├── 📁 AddService
       │   ├── 📁 Global
-      │   ├── 📁 Mapper
-      │   ├── 📁 Response
-      │   ├── 📁 Services
-      │   └── 📁 ViewModes
+      │   ├── 📁 Mapper     # AutoMapper profiles for DTO/Entity mapping
+      │   ├── 📁 Response   # Standardized service response models
+      │   ├── 📁 Services   # Business logic implementations and interfaces
+      │   └── 📁 ViewModes  # Data transfer objects for the UI
       │
       ├── 📦 Tass_DAL (Data Access Layer)
       │   ├── 📁 AddService
       │   ├── 📁 Configration
-      │   ├── 📁 Data
-      │   ├── 📁 Entities
+      │   ├── 📁 Data          # DbContext and database initialization
+      │   ├── 📁 Entities      # Database models (Patient, Measurements)
       │   ├── 📁 Global
-      │   ├── 📁 Migrations
-      │   └── 📁 Repositories
+      │   ├── 📁 Migrations    # EF Core database migrations
+      │   └── 📁 Repositories  # Generic and specific repository implementations
       │
       ├── 🌐 TasanemoForMepo_MVC (Presentation Layer)
       │   ├── 📄 .gitignore
-      │   ├── 📁 Controllers
+      │   ├── 📁 Controllers  # MVC Controllers (Patient, Measurement, Home)
       │   ├── 📁 Global
       │   ├── 📁 Models
-      │   ├── 📄 Program.cs
+      │   ├── 📄 Program.cs   # Application entry point and dependency injection
       │   ├── 📁 Properties
-      │   ├── 📁 Views
-      │   └── 📁 wwwroot
+      │   ├── 📁 Views        # Razor views for the web interface
+      │   └── 📁 wwwroot      # Static assets (CSS, JS, Images)
       │
       └── 🧾 TasaneemWebSite.sln
     ---
