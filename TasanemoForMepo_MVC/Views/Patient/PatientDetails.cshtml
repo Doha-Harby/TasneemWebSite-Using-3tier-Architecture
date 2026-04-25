@@ -1,0 +1,334 @@
+﻿@using Tass_BLL.ViewModes.Patient
+@model PatientDetailsModifyModeVM
+
+@{
+    ViewData["Title"] = Model.IsEditMode ? "تعديل بيانات المريض" : "تفاصيل المريض";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/CreatePatient.css" asp-append-version="true" />
+     <link rel="stylesheet" href="~/css/GetAll.css" asp-append-version="true" />
+}
+
+<div class="container py-4">
+    <!-- Header Section -->
+    <div class="patient-header">
+        <div class="row align-items-center">
+            <div class="col-md-2 text-center text-md-start">
+                <div class="patient-avatar">
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </div>
+            <div class="col-md-8 text-center text-md-start">
+                @if (!Model.IsEditMode)
+                {
+                    <h2 class="mb-2">@Model.Patient.Name</h2>
+                    <p class="mb-0 opacity-75">
+                        <i class="fas fa-id-card me-2"></i>رقم المريض: #@Model.Patient.Id
+                    </p>
+                }
+                else
+                {
+                    <h2 class="mb-2">تعديل بيانات المريض</h2>
+                    <p class="mb-0 opacity-75">
+                        <i class="fas fa-id-card me-2"></i>رقم المريض: #@Model.Patient.Id
+                    </p>
+                }
+            </div>
+            <div class="col-md-2 text-center text-md-end mt-3 mt-md-0">
+                <a asp-action="Index" class="btn btn-light btn-sm">
+                    <i class="fas fa-arrow-right me-1"></i> رجوع
+                </a>
+                @if (!Model.IsEditMode)
+                {
+                    <a asp-action="UpdatePatient" asp-route-id="@Model.Patient.Id" asp-route-editMode="true"
+                       class="btn btn-warning btn-sm me-2">
+                        <i class="fas fa-edit me-1"></i> تعديل
+                    </a>
+                }
+                <a asp-action="PrintPatient" asp-route-id="@Model.Patient.Id"
+                   class="btn btn-primary btn-sm me-2" target="_blank">
+                    <i class="fas fa-print me-1"></i> طباعة
+                </a>
+            </div>
+        </div>
+    </div>
+
+   
+    <div class="row">
+        <!-- Patient Info Section -->
+        <div class="col-lg-5 mb-4">
+            <div class="info-card">
+                <div class="card-header-custom">
+                    <h4 class="mb-0">
+                        <i class="fas fa-user me-2"></i>
+                        معلومات المريض
+                    </h4>
+                </div>
+                <div class="card-body">
+                    @if (!Model.IsEditMode)
+                    {
+                        <!-- عرض المعلومات فقط -->
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-user me-2 text-primary-green"></i>
+                                الاسم الكامل
+                            </div>
+                            <div class="info-value">@Model.Patient.Name</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-user-circle me-2 text-primary-green"></i>
+                                العمر
+                            </div>
+                            <div class="info-value">@Model.Patient.Age سنة</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-ruler me-2 text-primary-green"></i>
+                                الطول
+                            </div>
+                            <div class="info-value">@Model.Patient.Hight سم</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-briefcase me-2 text-primary-green"></i>
+                                الوظيفة
+                            </div>
+                            <div class="info-value">@Model.Patient.Job</div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-stethoscope me-2 text-primary-green"></i>
+                                التشخيص
+                            </div>
+                            <div class="info-value">
+                                <span class="badge-custom">@Model.Patient.Diagnosis</span>
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-note-sticky me-2 text-primary-green"></i>
+                                الملاحظات
+                            </div>
+                            <div class="info-value">
+                                @Model.Patient.Notes
+                            </div>
+                        </div>
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-clock me-2 text-primary-green"></i>
+                                تاريخ التسجيل
+                            </div>
+                            <div class="info-value">@Model.Patient.CreatedOn.ToString("dd MMMM yyyy")</div>
+                        </div>
+                    }
+                    else
+                    {
+                        <!-- نموذج التعديل -->
+                        <form asp-controller ="Patient" asp-action="UpdatePatient" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" asp-for="Patient.Id" />
+
+                            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                            <div class="form-group-custom mb-3">
+                                <label asp-for="Patient.Name" class="form-label">
+                                    <i class="fas fa-user me-2 text-primary-green"></i>
+                                    الاسم الكامل
+                                </label>
+                                <input asp-for="Patient.Name" class="form-control-custom" required />
+                                <span asp-validation-for="Patient.Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group-custom mb-3">
+                                <label asp-for="Patient.Age" class="form-label">
+                                    <i class="fas fa-user-circle me-2 text-primary-green"></i>
+                                    العمر (سنة)
+                                </label>
+                                <input asp-for="Patient.Age" type="number" class="form-control-custom" />
+                                <span asp-validation-for="Patient.Age" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group-custom mb-3">
+                                <label asp-for="Patient.Hight" class="form-label">
+                                    <i class="fas fa-ruler me-2 text-primary-green"></i>
+                                    الطول (سم)
+                                </label>
+                                <input asp-for="Patient.Hight" type="number" step="0.01" class="form-control-custom" />
+                                <span asp-validation-for="Patient.Hight" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group-custom mb-3">
+                                <label asp-for="Patient.Job" class="form-label">
+                                    <i class="fas fa-briefcase me-2 text-primary-green"></i>
+                                    الوظيفة
+                                </label>
+                                <input asp-for="Patient.Job" class="form-control-custom" />
+                                <span asp-validation-for="Patient.Job" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group-custom mb-3">
+                                <label asp-for="Patient.Diagnosis" class="form-label">
+                                    <i class="fas fa-stethoscope me-2 text-primary-green"></i>
+                                    التشخيص
+                                </label>
+                                <input asp-for="Patient.Diagnosis" class="form-control-custom" />
+                                <span asp-validation-for="Patient.Diagnosis" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group-custom mb-3">
+                                <label asp-for="Patient.Notes" class="form-label">
+                                    <i class="fas fa-note-sticky me-2 text-primary-green"></i>
+                                    الملاحظات
+                                </label>
+                                <textarea asp-for="Patient.Notes" class="form-control-custom" rows="3"></textarea>
+                                <span asp-validation-for="Patient.Notes" class="text-danger"></span>
+                            </div>
+
+                            <div class="mt-4">
+                                <button type="submit" class="btn-custom">
+                                    <i class="fas fa-save me-2"></i>
+                                    حفظ التعديلات
+                                </button>
+                                <a asp-action="PatientDetails" asp-route-id="@Model.Patient.Id" class="btn btn-secondary ms-2">
+                                    <i class="fas fa-times me-2"></i>
+                                    إلغاء
+                                </a>
+                            </div>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Measurement Section (يبقى كما هو) -->
+        <div class="col-lg-7 mb-4">
+            <div class="info-card">
+                <div class="card-header-custom">
+                    <h4 class="mb-0">
+                        <i class="fas fa-chart-simple me-2"></i>
+                        إضافة قياس جديد
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form asp-controller="Measurement" asp-action="AddMeasurement" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="PatientId" value="@Model.Patient.Id" />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group-custom">
+                                    <label>الصدر (سم)</label>
+                                    <input name="Chest" type="number" step="0.1" min="0" max="900" class="form-control-custom" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group-custom">
+                                    <label>أعلى البطن (سم)</label>
+                                    <input name="UpperAbdomen" type="number" step="0.1" min="0" max="900" class="form-control-custom" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group-custom">
+                                    <label>أسفل البطن (سم)</label>
+                                    <input name="LowerAbdomen" type="number" step="0.1" min="0" max="900" class="form-control-custom" />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group-custom">
+                                    <label>الأرداف (سم)</label>
+                                    <input name="Buttocks" type="number" step="0.1" min="0" max="900" class="form-control-custom" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group-custom">
+                                    <label>تاريخ القياس</label>
+                                    <input name="MeasurementDate" type="date" class="form-control-custom" value="@DateTime.Today.ToString("yyyy-MM-dd")" required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group-custom">
+                                    <label>الوزن (كجم)</label>
+                                    <input name="Weight" type="number" step="0.1" min="0" max="900" class="form-control-custom" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-custom">
+                            <i class="fas fa-save me-2"></i>
+                            حفظ القياس
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Measurements History Section (يبقى كما هو) -->
+    <div class="row">
+        <div class="col-12">
+            <div class="info-card">
+                <div class="card-header-custom">
+                    <h4 class="mb-0">
+                        <i class="fas fa-history me-2"></i>    
+                        @Model.Measurements.Count إجمالي سجل القياسات
+                    </h4>
+                    
+                </div>
+                <div class="card-body">
+                    @if (Model.Measurements.Any())
+                    {
+                        <div class="table-responsive">
+                            <table class="measurement-table table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th><i class="fas fa-calendar"></i> التاريخ</th>
+                                        <th><i class="fas fa-weight-scale"></i> الوزن</th>
+                                        <th><i class="fas fa-heart"></i> الصدر</th>
+                                        <th><i class="fas fa-arrow-up"></i> أعلى البطن</th>
+                                        <th><i class="fas fa-arrow-down"></i> أسفل البطن</th>
+                                        <th><i class="fas fa-people-arrows"></i> الأرداف</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var measurement in Model.Measurements.OrderByDescending(m => m.MeasurementDate))
+                                    {
+                                        <tr>
+                                            <td class="fw-bold">@measurement.MeasurementDate.ToString("dd/MM/yyyy")</td>
+                                            <td>@measurement.Weight كجم</td>
+                                            <td>@measurement.Chest سم</td>
+                                            <td>@measurement.UpperAbdomen سم</td>
+                                            <td>@measurement.LowerAbdomen سم</td>
+                                            <td>@measurement.Buttocks سم</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="empty-state">
+                            <i class="fas fa-chart-line"></i>
+                            <h5 class="mt-3">لا توجد قياسات مسجلة</h5>
+                            <p class="text-muted">قم بإضافة أول قياس للمريض باستخدام النموذج المجاور</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

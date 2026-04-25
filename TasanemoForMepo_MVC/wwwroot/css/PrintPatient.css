@@ -1,0 +1,331 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background: white;
+    color: #333;
+    line-height: 1.5;
+}
+
+/* حاوية الطباعة */
+.print-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* أزرار التحكم */
+.print-controls {
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 12px;
+    position: sticky;
+    top: 10px;
+    z-index: 1000;
+}
+
+.btn-print, .btn-close {
+    padding: 12px 24px;
+    margin: 0 8px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-print {
+    background: #1b9d5f;
+    color: white;
+}
+
+    .btn-print:hover {
+        background: #14804c;
+    }
+
+.btn-close {
+    background: #6c757d;
+    color: white;
+}
+
+    .btn-close:hover {
+        background: #5a6268;
+    }
+
+/* رأس التقرير */
+.print-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 4px solid #1b9d5f;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.doctor-info {
+    text-align: center;
+    padding-left: 22px
+}
+
+    .doctor-info h1 {
+        margin: 0;
+        color: #1b9d5f;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .doctor-info .specialty {
+        margin: 4px 0 0 0;
+        font-size: 14px;
+        color: #555;
+    }
+
+.num {
+    color: #1b9d5f;
+    font-size: 18px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.logo-section {
+    flex-shrink: 0;
+    padding-right: 33px;
+    scale: 1.44;
+}
+
+.logo {
+    width: 80px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* معلومات المريض */
+.patient-info-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 20px;
+    border: 1px solid #e0e0e0;
+}
+
+.section-title {
+    background: #1b9d5f;
+    color: white;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/* شبكة المعلومات */
+.info-grid.two-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 14px;
+    flex-wrap: wrap;
+}
+
+.info-label {
+    font-weight: bold;
+    color: #1b9d5f;
+    min-width: 80px;
+}
+
+.info-value {
+    color: #333;
+    flex: 1;
+}
+
+/* الجدول */
+.table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.measurements-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 10px;
+    page-break-inside: auto;
+}
+
+    .measurements-table tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
+    .measurements-table th {
+        background: #1b9d5f;
+        color: white;
+        padding: 10px 8px;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .measurements-table td {
+        padding: 8px 6px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+
+/* التخصصات */
+.specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 20px 0;
+    padding-top: 15px;
+    border-top: 2px solid #1b9d5f;
+}
+
+.specialty {
+    padding: 6px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #1b9d5f;
+    font-weight: 500;
+}
+
+/* no data */
+.no-data {
+    text-align: center;
+    padding: 30px 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* footer */
+.print-footer {
+    margin-top: 20px;
+    padding-top: 12px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    font-size: 11px;
+    color: #666;
+}
+
+    .print-footer p {
+        margin: 3px 0;
+    }
+
+/* ================= RESPONSIVE ================= */
+
+@media screen and (max-width: 768px) {
+    .print-wrapper {
+        padding: 10px;
+    }
+
+    .print-header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .logo {
+        width: 55px;
+    }
+
+    .info-item {
+        font-size: 13px;
+    }
+
+    .info-label {
+        min-width: 70px;
+    }
+
+    .specialties-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .specialty {
+        font-size: 11px;
+        padding: 4px;
+    }
+
+    .measurements-table {
+        font-size: 11px;
+    }
+
+        .measurements-table th,
+        .measurements-table td {
+            padding: 6px 3px;
+        }
+
+    .btn-print, .btn-close {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+/* ================= PRINT ================= */
+
+@page {
+    size: A4 portrait;
+    margin: 10mm;
+}
+
+@media print {
+
+    html, body {
+        width: 210mm;
+        background: white;
+    }
+
+    .print-controls {
+        display: none !important;
+    }
+
+    .print-wrapper {
+        margin: 0 auto;
+        padding: 10px;
+        width: 100%;
+        max-width: 190mm;
+    }
+
+    body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .patient-info-card,
+    .measurements-table {
+        page-break-inside: avoid;
+    }
+}
+
+/* موبايل أثناء الطباعة */
+@media print and (max-width: 768px) {
+    html, body {
+        width: 100% !important;
+    }
+
+    .print-wrapper {
+        max-width: 100% !important;
+        padding: 5mm;
+    }
+
+    .info-grid.two-columns {
+        grid-template-columns: 1fr;
+    }
+
+    .measurements-table {
+        font-size: 11px;
+    }
+}

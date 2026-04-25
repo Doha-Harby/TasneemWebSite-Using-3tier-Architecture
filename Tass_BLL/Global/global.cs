@@ -1,0 +1,9 @@
+﻿global using AutoMapper;
+global using Tass_DAL.Entities;
+global using Tass_BLL.Response;
+global using Tass_BLL.ViewModes.Patient;
+global using Tass_BLL.Services.Interface;
+global using Tass_BLL.ViewModes.Measurement;
+global using Tass_DAL.Repositories.Interface;
+global using Tass_BLL.Services.Implementation;
+global using Microsoft.Extensions.DependencyInjection;

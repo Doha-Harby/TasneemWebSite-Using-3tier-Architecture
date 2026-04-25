@@ -1,0 +1,141 @@
+﻿@using Tass_BLL.ViewModes.Patient
+@model List<GetAllDeletedPatientsVM>
+
+@{
+    ViewData["Title"] = " المرضى المحذوفين";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/GetAll.css" asp-append-version="true" />
+}
+@section Scripts {
+    <link rel="stylesheet" href="~/js/GetAll.js" asp-append-version="true" />
+}
+
+<div class="container mt-4" dir="rtl">
+    <!-- رأس الصفحة -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="">
+            <i class="fas fa-users me-2"></i>كل المرضى
+        </h2>
+    </div>
+
+    <!-- بطاقات الإحصائيات السريعة -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-white mb-3" style="background: linear-gradient(135deg, #1b9d5f 0%, #0f6e42 100%);">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="card-title">إجمالي المرضى المحذوفين</h6>
+                        <h3 class="mb-0">@Model.Count</h3>
+                    </div>
+                    <i class="fas fa-user-md fa-3x opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- شريط البحث -->
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input type="text" id="searchInput" class="form-control" placeholder="ابحث باسم المريض..." onkeyup="searchTable()">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-select" id="filterSelect" onchange="filterTable()">
+                        <option value="all">كل المرضى</option>
+                        <option value="hasMeasurements">لديهم قياسات</option>
+                        <option value="noMeasurements">لا يوجد قياسات</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- جدول المرضى -->
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle" id="patientsTable">
+                    <thead class="table-primary">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">
+                                <i class="fas fa-user me-1"></i>الاسم
+                            </th>
+                            <th scope="col">
+                                <i class="fas fa-calendar me-1"></i>السن
+                            </th>
+                            <th scope="col">
+                                <i class="fas fa-phone me-1"></i>الوظيفه
+                            </th>
+                            <th scope="col">
+                                <i class="fas fa-ruler me-1"></i>الطول
+                            </th>
+                            <th scope="col">
+                                <i class="fas fa-arrow-up me-1"></i>التشخيص
+                            </th>
+                            <th scope="col">
+                                <i class="fas fa-list-ul me-1"></i> تقاعلات
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            int counter = 1;
+                        }
+                        @foreach (var patient in Model)
+                        {
+                            <tr>
+                                <th scope="row">@(counter++)</th>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <strong>@patient.Name</strong>
+                                    </div>
+                                </td>
+                                <td>@patient.Job</td>
+                                <td>
+                                    <span class="badge bg-info rounded-pill">@patient.Hight سم</span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-secondary rounded-pill">@patient.Age سنة</span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-warning text-dark">@patient.Diagnosis</span>
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <form asp-action="DeletePermanent" asp-route-id="@patient.Id" method="post" style="display:inline;">
+                                            <button type="submit"
+                                                    class="btn btn-dark btn-sm me-2"
+                                                    title="حذف نهائي"
+                                                    onclick="return confirm('⚠️ سيتم حذف المريض نهائيًا! هل أنت متأكد؟');">
+                                                <i class="fas fa-times me-1"></i> حذف نهائي
+                                            </button>
+                                        </form>
+                                        <form asp-action="Restore" asp-route-id="@patient.Id" method="post" style="display:inline;">
+                                            <button type="submit"
+                                                    class="btn btn-success btn-sm me-2"
+                                                    title="استرجاع"
+                                                    onclick="return confirm('هل تريد استرجاع هذا المريض؟');">
+                                                <i class="fas fa-undo me-1"></i> استرجاع
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

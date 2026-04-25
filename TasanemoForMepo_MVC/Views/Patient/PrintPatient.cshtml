@@ -1,0 +1,156 @@
+﻿@using Tass_BLL.ViewModes.Patient
+@model PrintPatientDetailsVM
+@{
+    Layout = null;
+    ViewData["Title"] = $"تقرير متابعة - {Model.Patient.Name}";
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/PrintPatient.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="print-wrapper">
+        <!-- أزرار التحكم -->
+        <div class="print-controls no-print">
+            <button class="btn-print" onclick="window.print()">
+                🖨️ طباعة التقرير
+            </button>
+            <button class="btn-close" onclick="window.close()">
+                ✖️ إغلاق
+            </button>
+        </div>
+
+        <!-- رأس التقرير -->
+        <div class="print-header">
+            <div class="logo-section">
+                <img src="~/images/TasneemLogo.jpeg" alt="Dr. Tasneem Harby" class="logo" />
+            </div>
+            <div class="doctor-info">
+                <h1>Dr. Tasneem Harby</h1>
+                <p class="specialty">دكتورة علاج طبيعي وتغذية علاجية</p>
+                <p class="num">📞 01274231990</p>
+            </div>
+        </div>
+
+        <!-- معلومات المريض - في صفين -->
+        <div class="patient-info-card">
+            <div class="section-title">
+                <span>📋</span> بيانات المريض
+            </div>
+            <div class="info-grid two-columns">
+                <div class="info-item">
+                    <span class="info-label">الاسم:</span>
+                    <span class="info-value">@Model.Patient.Name</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">العمر:</span>
+                    <span class="info-value">@Model.Patient.Age سنة</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">الطول:</span>
+                    <span class="info-value">@Model.Patient.Hight سم</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">الوظيفة:</span>
+                    <span class="info-value">@Model.Patient.Job</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">التشخيص:</span>
+                    <span class="info-value">@Model.Patient.Diagnosis</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">الملاحظات:</span>
+                    <span class="info-value">@Model.Patient.Notes</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- سجل القياسات -->
+        <div class="patient-info-card">
+            <div class="section-title">
+                <span>📊</span> سجل القياسات
+            </div>
+            @if (Model.Measurements.Any())
+            {
+                <div class="table-responsive">
+                    <table class="measurements-table">
+                        <thead>
+                            <tr>
+                                <th>التاريخ</th>
+                                <th>الوزن</th>
+                                <th>الصدر</th>
+                                <th>أعلى البطن</th>
+                                <th>أسفل البطن</th>
+                                <th>الأرداف</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var m in Model.Measurements.OrderByDescending(x => x.MeasurementDate))
+                            {
+                                <tr>
+                                    <td>@m.MeasurementDate.ToString("dd/MM/yyyy")</td>
+                                    <td>@m.Weight كجم</td>
+                                    <td>@m.Chest سم</td>
+                                    <td>@m.UpperAbdomen سم</td>
+                                    <td>@m.LowerAbdomen سم</td>
+                                    <td>@m.Buttocks سم</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="no-data">📭 لا توجد قياسات مسجلة لهذا المريض</p>
+            }
+        </div>
+
+        <!-- التخصصات -->
+        <div class="specialties-grid">
+            <p class="specialty">🏥 سمنة ونحافة</p>
+            <p class="specialty">🤰 حمل ورضاعة</p>
+            <p class="specialty">💊 الأمراض المزمنة</p>
+            <p class="specialty">🍎 تغذية أطفال</p>
+        </div>
+    </div>
+
+    <script>
+        // وظيفة الطباعة
+        function handlePrint() {
+            window.print();
+        }
+
+        // اكتشاف إذا كان الجهاز هاتف
+        function isMobile() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        // تحسين عرض الجداول على الهواتف
+        if (isMobile()) {
+            const tables = document.querySelectorAll('.measurements-table');
+            tables.forEach(table => {
+                table.style.fontSize = '12px';
+                const cells = table.querySelectorAll('th, td');
+                cells.forEach(cell => {
+                    cell.style.padding = '6px 4px';
+                });
+            });
+        }
+
+        // تأثيرات عند الطباعة
+        window.onbeforeprint = function() {
+            document.body.classList.add('printing');
+        };
+
+        window.onafterprint = function() {
+            document.body.classList.remove('printing');
+        };
+    </script>
+</body>
+</html>

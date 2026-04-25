@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Dr/ Tasneem Harby</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/Shared.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="d-flex align-items-center gap-2">
+                <div class="logo-wrapper">
+                    <img src="~/Images/TasneemLogo.jpeg" alt="Dr Logo" class="sidebar-logo">
+                </div>
+                <h3 class="mb-0">Dr/ Tasneem Harby</h3>
+            </div>
+            <button class="toggle-btn" id="toggleSidebar">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>لوحة التحكم</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Patient" asp-action="Index">
+                    <i class="fas fa-users"></i>
+                    <span>المرضي </span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Patient" asp-action="Create">
+                    <i class="fas fa-user-injured"></i>
+                    <span>إضافة مريض جديد</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Patient" asp-action="DeletedPatients">
+                    <i class="fas fa-trash"></i>
+                    <span>المرضي المحذوفين</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Patient" asp-action="Comments">
+                    <i class="fas fa-chart-line"></i>
+                    <span>التعليقات</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-controller="Patient" asp-action="Reports">
+                    <i class="fas fa-file-alt"></i>
+                    <span>التقارير</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">
+                    <i class="fas fa-lock"></i>
+                    <span>الخصوصية</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <!-- Top Header -->
+        <div class="top-header">
+            <button class="mobile-toggle" id="mobileToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <h4 class="page-title">@ViewData["Title"]</h4>
+            <div class="user-menu">
+                <div class="notification-icon">
+                    <i class="fas fa-bell fa-lg"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Area -->
+        <div class="content-area">
+            @RenderBody()
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6 text-md-start">
+                        © 2026 - Doha Harby
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none">سياسة الخصوصية</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/GetAll.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
