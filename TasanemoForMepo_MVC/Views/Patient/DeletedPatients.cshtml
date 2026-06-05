@@ -110,20 +110,19 @@
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group">
-                                        <form asp-action="DeletePermanent" asp-route-id="@patient.Id" method="post" style="display:inline;">
-                                            <button type="submit"
-                                                    class="btn btn-dark btn-sm me-2"
-                                                    title=@SharedLocalizer["PermanentDelete"]
-                                                    onclick="return confirm(@SharedLocalizer["Thepatientwillbepermanentlydeleted.Areyousure?"]);">
-                                                <i class="fas fa-times me-1"></i> @SharedLocalizer["PermanentDelete"]
+                                        @* زرار الاسترجاع — كان Restore *@
+                                        <form asp-action="RestoreDeleted" asp-route-id="@patient.Id" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-success btn-sm me-2"
+                                                    onclick="return confirm('هل تريد استرجاع هذا المريض؟');">
+                                                <i class="fas fa-undo me-1"></i> استرجاع
                                             </button>
                                         </form>
-                                        <form asp-action="Restore" asp-route-id="@patient.Id" method="post" style="display:inline;">
-                                            <button type="submit"
-                                                    class="btn btn-success btn-sm me-2"
-                                                    title=@SharedLocalizer["Restore"]
-                                                    onclick="return confirm(@SharedLocalizer["Doyouwantrestorethispatient?"]);">
-                                                <i class="fas fa-undo me-1"></i> @SharedLocalizer["Restore"]
+
+                                        @* زرار الحذف النهائي — كان DeletePermanent *@
+                                        <form asp-action="HardDelete" asp-route-id="@patient.Id" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-dark btn-sm me-2"
+                                                    onclick="return confirm('⚠️ سيتم حذف المريض نهائيًا! هل أنت متأكد؟');">
+                                                <i class="fas fa-times me-1"></i> حذف نهائي
                                             </button>
                                         </form>
                                     </div>

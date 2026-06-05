@@ -79,10 +79,11 @@
             </button>
             <h4 class="page-title">@ViewData["Title"]</h4>
             <div class="user-menu">
-                <div class="notification-icon">
+                @* <div class="notification-icon">
                     <i class="fas fa-bell fa-lg"></i>
                     <span class="notification-badge">3</span>
                 </div>
+                 *@
                 @{
                     var isArabic = System.Globalization.CultureInfo.CurrentCulture.Name == "ar-EG";
                     var targetLang = isArabic ? "en-US" : "ar-EG";
@@ -107,6 +108,11 @@
                     </span>
 
                 </a>
+                <div class="notification-icon">
+                    <i class="fas fa-bell fa-lg"></i>
+                    <span class="notification-badge">3</span>
+                </div>
+
                 <div class="user-avatar">
                     <i class="fas fa-user"></i>
                 </div>

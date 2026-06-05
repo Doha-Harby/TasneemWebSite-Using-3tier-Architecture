@@ -107,7 +107,7 @@
         public async Task<IActionResult> HardDelete(int id)
         {
             await patientService.HardDeleteAsync(id);
-            return RedirectToAction("Index");
+            return RedirectToAction("DeletedPatients"); 
         }
         [HttpGet]
         public async Task<IActionResult> PrintPatient(int id)
