@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Tass_DAL.AddService;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using Tass_BLL.AddService;
+using Tass_DAL.AddService;
 using Tass_DAL.Data;
 
 namespace Tass_PL
@@ -24,7 +27,16 @@ namespace Tass_PL
             // ========== Services ==========
             builder.Services.AddBusinessInBLL();
 
+            // ========== Languages ==========
+            builder.Services.AddLocalization();
+
             var app = builder.Build();
+            var supportedCultures = new[]
+             {
+                new CultureInfo("en-US"),
+                new CultureInfo("ar-EG")
+            };
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -34,9 +46,22 @@ namespace Tass_PL
             }
 
             app.UseHttpsRedirection();
+            app.UseRequestLocalization(new RequestLocalizationOptions
+            {
+                DefaultRequestCulture = new RequestCulture("ar-EG"),
+                SupportedCultures = supportedCultures,
+                SupportedUICultures = supportedCultures,
+                RequestCultureProviders = new List<IRequestCultureProvider>
+                {
+                    new QueryStringRequestCultureProvider(),
+                    new CookieRequestCultureProvider()
+                }
+            });
             app.UseRouting();
 
             app.UseAuthorization();
+
+          
 
             app.MapStaticAssets();
             app.MapControllerRoute(

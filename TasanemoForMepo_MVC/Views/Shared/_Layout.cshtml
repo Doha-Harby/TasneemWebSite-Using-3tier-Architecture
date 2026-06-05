@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="ltr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +18,7 @@
                 <div class="logo-wrapper">
                     <img src="~/Images/TasneemLogo.jpeg" alt="Dr Logo" class="sidebar-logo">
                 </div>
-                <h3 class="mb-0">Dr/ Tasneem Harby</h3>
+                <h3 class="mb-0">@SharedLocalizer["Dr/TasneemHarby"]</h3>
             </div>
             <button class="toggle-btn" id="toggleSidebar">
                 <i class="fas fa-chevron-right"></i>
@@ -28,43 +28,43 @@
             <li class="nav-item">
                 <a class="nav-link @(ViewContext.RouteData.Values["Action"]?.ToString() == "Index" ? "active" : "")" asp-area="" asp-controller="Home" asp-action="Index">
                     <i class="fas fa-tachometer-alt"></i>
-                    <span>لوحة التحكم</span>
+                    <span>  @SharedLocalizer["ControlPanal"] </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Patient" asp-action="Index">
                     <i class="fas fa-users"></i>
-                    <span>المرضي </span>
+                    <span>  @SharedLocalizer["Patients"] </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Patient" asp-action="Create">
                     <i class="fas fa-user-injured"></i>
-                    <span>إضافة مريض جديد</span>
+                    <span> @SharedLocalizer["AddNewPatient"] </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Patient" asp-action="DeletedPatients">
                     <i class="fas fa-trash"></i>
-                    <span>المرضي المحذوفين</span>
+                    <span> @SharedLocalizer["DeletedPatients"] </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Patient" asp-action="Comments">
                     <i class="fas fa-chart-line"></i>
-                    <span>التعليقات</span>
+                    <span> @SharedLocalizer["Comments"] </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-controller="Patient" asp-action="Reports">
                     <i class="fas fa-file-alt"></i>
-                    <span>التقارير</span>
+                    <span> @SharedLocalizer["Reports"] </span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">
                     <i class="fas fa-lock"></i>
-                    <span>الخصوصية</span>
+                    <span> @SharedLocalizer["Privacy"] </span>
                 </a>
             </li>
         </ul>
@@ -83,6 +83,30 @@
                     <i class="fas fa-bell fa-lg"></i>
                     <span class="notification-badge">3</span>
                 </div>
+                @{
+                    var isArabic = System.Globalization.CultureInfo.CurrentCulture.Name == "ar-EG";
+                    var targetLang = isArabic ? "en-US" : "ar-EG";
+                }
+
+                <a asp-controller="Home"
+                   asp-action="SetLanguage"
+                   asp-route-language="@targetLang"
+                   asp-route-returnUrl="@Context.Request.Path"
+                   class="language-switcher">
+
+                    <i class="ti ti-language language-icon"></i>
+
+                    <span class="current-lang">
+                        @(isArabic ? "AR" : "EN")
+                    </span>
+
+                    <span class="lang-separator">|</span>
+
+                    <span class="target-lang">
+                        @(isArabic ? "EN" : "AR")
+                    </span>
+
+                </a>
                 <div class="user-avatar">
                     <i class="fas fa-user"></i>
                 </div>
@@ -102,7 +126,7 @@
                         © 2026 - Doha Harby
                     </div>
                     <div class="col-md-6 text-md-end">
-                        <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none">سياسة الخصوصية</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none"> @SharedLocalizer["PrivacyPolice"] </a>
                     </div>
                 </div>
             </div>

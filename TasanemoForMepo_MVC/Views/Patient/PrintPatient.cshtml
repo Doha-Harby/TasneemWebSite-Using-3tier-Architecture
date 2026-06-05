@@ -2,7 +2,7 @@
 @model PrintPatientDetailsVM
 @{
     Layout = null;
-    ViewData["Title"] = $"تقرير متابعة - {Model.Patient.Name}";
+    ViewData["Title"] = $" {@SharedLocalizer["Follow-upReport"]} - {Model.Patient.Name}";
 }
 
 <!DOCTYPE html>
@@ -18,21 +18,21 @@
         <!-- أزرار التحكم -->
         <div class="print-controls no-print">
             <button class="btn-print" onclick="window.print()">
-                🖨️ طباعة التقرير
+                🖨️ @SharedLocalizer["PrintTheReport"]
             </button>
             <button class="btn-close" onclick="window.close()">
-                ✖️ إغلاق
+                ✖️ @SharedLocalizer["Close"]
             </button>
         </div>
 
         <!-- رأس التقرير -->
         <div class="print-header">
             <div class="logo-section">
-                <img src="~/images/TasneemLogo.jpeg" alt="Dr. Tasneem Harby" class="logo" />
+                <img src="~/images/TasneemLogo.jpeg" alt="Dr. Tasneem Ahmed Harby" class="logo" />
             </div>
             <div class="doctor-info">
-                <h1>Dr. Tasneem Harby</h1>
-                <p class="specialty">دكتورة علاج طبيعي وتغذية علاجية</p>
+                <h1>Dr. Tasneem Ahmed Harby</h1>
+                <p class="specialty">@SharedLocalizer["PhysicianAndClinicalNutritionist"]</p>
                 <p class="num">📞 01274231990</p>
             </div>
         </div>
@@ -40,31 +40,31 @@
         <!-- معلومات المريض - في صفين -->
         <div class="patient-info-card">
             <div class="section-title">
-                <span>📋</span> بيانات المريض
+                <span>📋</span>@SharedLocalizer["PatientDetails"]
             </div>
             <div class="info-grid two-columns">
                 <div class="info-item">
-                    <span class="info-label">الاسم:</span>
+                    <span class="info-label">@SharedLocalizer["Name"]:</span>
                     <span class="info-value">@Model.Patient.Name</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-label">العمر:</span>
-                    <span class="info-value">@Model.Patient.Age سنة</span>
+                    <span class="info-label">@SharedLocalizer["Age"]:</span>
+                    <span class="info-value">@Model.Patient.Age @SharedLocalizer["year"]</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-label">الطول:</span>
-                    <span class="info-value">@Model.Patient.Hight سم</span>
+                    <span class="info-label">@SharedLocalizer["Hight"]:</span>
+                    <span class="info-value">@Model.Patient.Hight @SharedLocalizer["cm"]</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-label">الوظيفة:</span>
+                    <span class="info-label">@SharedLocalizer["Job"]:</span>
                     <span class="info-value">@Model.Patient.Job</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-label">التشخيص:</span>
+                    <span class="info-label">@SharedLocalizer["Diagnosis"]:</span>
                     <span class="info-value">@Model.Patient.Diagnosis</span>
                 </div>
                 <div class="info-item">
-                    <span class="info-label">الملاحظات:</span>
+                    <span class="info-label">@SharedLocalizer["Notes"]:</span>
                     <span class="info-value">@Model.Patient.Notes</span>
                 </div>
             </div>
@@ -73,7 +73,7 @@
         <!-- سجل القياسات -->
         <div class="patient-info-card">
             <div class="section-title">
-                <span>📊</span> سجل القياسات
+                <span>📊</span> @SharedLocalizer["RecordMeasurements"]
             </div>
             @if (Model.Measurements.Any())
             {
@@ -81,12 +81,12 @@
                     <table class="measurements-table">
                         <thead>
                             <tr>
-                                <th>التاريخ</th>
-                                <th>الوزن</th>
-                                <th>الصدر</th>
-                                <th>أعلى البطن</th>
-                                <th>أسفل البطن</th>
-                                <th>الأرداف</th>
+                                <th>@SharedLocalizer["Date"]</th>
+                                <th>@SharedLocalizer["Weight"]</th>
+                                <th>@SharedLocalizer["Chest"]</th>
+                                <th>@SharedLocalizer["UpperAbdomen"]</th>
+                                <th>@SharedLocalizer["LowerAbdomen"]</th>
+                                <th>@SharedLocalizer["Buttocks"]</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -94,11 +94,11 @@
                             {
                                 <tr>
                                     <td>@m.MeasurementDate.ToString("dd/MM/yyyy")</td>
-                                    <td>@m.Weight كجم</td>
-                                    <td>@m.Chest سم</td>
-                                    <td>@m.UpperAbdomen سم</td>
-                                    <td>@m.LowerAbdomen سم</td>
-                                    <td>@m.Buttocks سم</td>
+                                    <td>@m.Weight @SharedLocalizer["kg"]</td>
+                                    <td>@m.Chest @SharedLocalizer["cm"]</td>
+                                    <td>@m.UpperAbdomen @SharedLocalizer["cm"]</td>
+                                    <td>@m.LowerAbdomen @SharedLocalizer["cm"]</td>
+                                    <td>@m.Buttocks @SharedLocalizer["cm"]</td>
                                 </tr>
                             }
                         </tbody>
@@ -107,16 +107,16 @@
             }
             else
             {
-                <p class="no-data">📭 لا توجد قياسات مسجلة لهذا المريض</p>
+                <p class="no-data">📭  @SharedLocalizer["NoMeasurementsWereRecorded"]</p>
             }
         </div>
 
         <!-- التخصصات -->
         <div class="specialties-grid">
-            <p class="specialty">🏥 سمنة ونحافة</p>
-            <p class="specialty">🤰 حمل ورضاعة</p>
-            <p class="specialty">💊 الأمراض المزمنة</p>
-            <p class="specialty">🍎 تغذية أطفال</p>
+            <p class="specialty">🏥 @SharedLocalizer["ObesityAndThinness"]</p>
+            <p class="specialty">🤰 @SharedLocalizer["PregnancyAndBreastfeeding"]</p>
+            <p class="specialty">💊 @SharedLocalizer["ChronicDiseases"]</p>
+            <p class="specialty">🍎 @SharedLocalizer["Children'sNutrition"]</p>
         </div>
     </div>
 

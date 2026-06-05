@@ -8,8 +8,8 @@
         public string? Job { get; set; }
         public string? Diagnosis { get; set; }
         public string? PhoneNumber { get; set; }
-        public int? Age { get; private set; }
-        public string? Notes { get; private set; }
+        public int? Age { get; set; }
+        public string? Notes { get; set; }
         public DateTime? CreatedOn { get; set; } = DateTime.Now;
         public string? CreatedBy { get; set; }
     }

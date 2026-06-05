@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="SavePatient" xml:space="preserve">
+    <value>حفظ المريض</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="DeletedPatients" xml:space="preserve">
+    <value>المرضى المحذوفين</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>التعليقات</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>التقارير</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>الخصوصية</value>
+  </data>
+  <data name="PrivacyPolice" xml:space="preserve">
+    <value>سياسة الخصوصية</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>العمر</value>
+  </data>
+  <data name="Patients" xml:space="preserve">
+    <value>المرضى</value>
+  </data>
+  <data name="ControlPanal" xml:space="preserve">
+    <value>لوحه التحكم</value>
+  </data>
+  <data name="Hight" xml:space="preserve">
+    <value>الطول</value>
+  </data>
+  <data name="AddNewPatient" xml:space="preserve">
+    <value>إضافة مريض جديد</value>
+  </data>
+  <data name="Notes" xml:space="preserve">
+    <value>الملاحظات</value>
+  </data>
+  <data name="Diagnosis" xml:space="preserve">
+    <value>التشخيص</value>
+  </data>
+  <data name="TotalDeletedPatients" xml:space="preserve">
+    <value>إجمالي المرضى المحذوفين</value>
+  </data>
+  <data name="SearchWithName" xml:space="preserve">
+    <value>ابحث باسم المريض</value>
+  </data>
+  <data name="WithMeasurements" xml:space="preserve">
+    <value>لديهم قياسات</value>
+  </data>
+  <data name="Job" xml:space="preserve">
+    <value>الوظيفة</value>
+  </data>
+  <data name="Actions" xml:space="preserve">
+    <value>تقاعلات</value>
+  </data>
+  <data name="cm" xml:space="preserve">
+    <value>سم</value>
+  </data>
+  <data name="year" xml:space="preserve">
+    <value>سنة</value>
+  </data>
+  <data name="PermanentDelete" xml:space="preserve">
+    <value>حذف نهائي</value>
+  </data>
+  <data name="Thepatientwillbepermanentlydeleted.Areyousure?" xml:space="preserve">
+    <value>⚠️ سيتم حذف المريض نهائيًا! هل أنت متأكد؟</value>
+  </data>
+  <data name="Restore" xml:space="preserve">
+    <value>استرجاع</value>
+  </data>
+  <data name="Doyouwantrestorethispatient?" xml:space="preserve">
+    <value>هل تريد استرجاع هذا المريض؟</value>
+  </data>
+  <data name="AllPatients" xml:space="preserve">
+    <value>كل المرضى</value>
+  </data>
+  <data name="TotalPatients" xml:space="preserve">
+    <value>إجمالي المرضى</value>
+  </data>
+  <data name="WithoutMeasurements" xml:space="preserve">
+    <value>ليس لديهم قياسات</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>عرض التفاصيل</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="Prints" xml:space="preserve">
+    <value>طباعة</value>
+  </data>
+  <data name="Thepatientwillbetemporarilydeleted.Areyousure?1" xml:space="preserve">
+    <value>⚠️ سيتم حذف المريض مؤقتا! هل أنت متأكد؟</value>
+  </data>
+  <data name="SoftDelete" xml:space="preserve">
+    <value>حذف المريض</value>
+  </data>
+  <data name="EditsPatientInformation" xml:space="preserve">
+    <value>تعديل بيانات المريض</value>
+  </data>
+  <data name="PatientDetails" xml:space="preserve">
+    <value> بيانات المريض</value>
+  </data>
+  <data name="PatientsNumber" xml:space="preserve">
+    <value>رقم المريض</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>رجوع</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>حفظ التعديلات</value>
+  </data>
+  <data name="AddNewMeasurement" xml:space="preserve">
+    <value>إضافة قياس جديد</value>
+  </data>
+  <data name="Chest" xml:space="preserve">
+    <value>الصدر</value>
+  </data>
+  <data name="LowerAbdomen" xml:space="preserve">
+    <value>أسفل البطن</value>
+  </data>
+  <data name="UpperAbdomen" xml:space="preserve">
+    <value>أعلى البطن</value>
+  </data>
+  <data name="Buttocks" xml:space="preserve">
+    <value>الأرداف</value>
+  </data>
+  <data name="MeasurementDate" xml:space="preserve">
+    <value>تاريخ القياس</value>
+  </data>
+  <data name="Weight" xml:space="preserve">
+    <value>الوزن</value>
+  </data>
+  <data name="kg" xml:space="preserve">
+    <value>كجم</value>
+  </data>
+  <data name="SaveMeasurement" xml:space="preserve">
+    <value>حفظ القياس</value>
+  </data>
+  <data name="TotalMeasurements" xml:space="preserve">
+    <value>إجمالي سجل القياسات</value>
+  </data>
+  <data name="NoMeasurementsWereRecorded" xml:space="preserve">
+    <value>لا توجد قياسات مسجلة لهذا المريض</value>
+  </data>
+  <data name="AddThePatient'sFirstMeasurementUsingTheAdjacentForm" xml:space="preserve">
+    <value>قم بإضافة أول قياس للمريض باستخدام النموذج المجاور</value>
+  </data>
+  <data name="Follow-upReport" xml:space="preserve">
+    <value>تقرير متابعة</value>
+  </data>
+  <data name="PrintTheReport" xml:space="preserve">
+    <value>طباعة التقرير</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+  <data name="PhysicianAndClinicalNutritionist" xml:space="preserve">
+    <value>دكتورة علاج طبيعي وتغذية علاجية</value>
+  </data>
+  <data name="RecordMeasurements" xml:space="preserve">
+    <value> سجل القياسات</value>
+  </data>
+  <data name="ObesityAndThinness" xml:space="preserve">
+    <value>سمنة ونحافة</value>
+  </data>
+  <data name="PregnancyAndBreastfeeding" xml:space="preserve">
+    <value>حمل ورضاعة</value>
+  </data>
+  <data name="ChronicDiseases" xml:space="preserve">
+    <value> الأمراض المزمنة</value>
+  </data>
+  <data name="Children'sNutrition" xml:space="preserve">
+    <value>تغذية أطفال</value>
+  </data>
+  <data name="Dr/TasneemHarby" xml:space="preserve">
+    <value>د/ تسنيم حربي</value>
+  </data>
+</root>

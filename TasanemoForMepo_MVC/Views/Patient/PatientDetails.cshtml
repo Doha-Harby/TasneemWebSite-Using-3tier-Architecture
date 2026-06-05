@@ -2,7 +2,7 @@
 @model PatientDetailsModifyModeVM
 
 @{
-    ViewData["Title"] = Model.IsEditMode ? "تعديل بيانات المريض" : "تفاصيل المريض";
+    ViewData["Title"] = Model.IsEditMode ? @SharedLocalizer["EditsPatientInformation"] : @SharedLocalizer["PatientDetails"];
 }
 
 @section Styles {
@@ -24,31 +24,36 @@
                 {
                     <h2 class="mb-2">@Model.Patient.Name</h2>
                     <p class="mb-0 opacity-75">
-                        <i class="fas fa-id-card me-2"></i>رقم المريض: #@Model.Patient.Id
+                        <i class="fas fa-id-card me-2"></i>
+                        @SharedLocalizer["PatientsNumber"]: #@Model.Patient.Id
                     </p>
                 }
                 else
                 {
-                    <h2 class="mb-2">تعديل بيانات المريض</h2>
+                    <h2 class="mb-2"> @SharedLocalizer["EditsPatientInformation"] </h2>
                     <p class="mb-0 opacity-75">
-                        <i class="fas fa-id-card me-2"></i>رقم المريض: #@Model.Patient.Id
+                        <i class="fas fa-id-card me-2"></i>
+                        @SharedLocalizer["PatientsNumber"]: #@Model.Patient.Id
                     </p>
                 }
             </div>
             <div class="col-md-2 text-center text-md-end mt-3 mt-md-0">
                 <a asp-action="Index" class="btn btn-light btn-sm">
-                    <i class="fas fa-arrow-right me-1"></i> رجوع
+                    <i class="fas fa-arrow-right me-1" ></i>
+                    @SharedLocalizer["Back"]
                 </a>
                 @if (!Model.IsEditMode)
                 {
                     <a asp-action="UpdatePatient" asp-route-id="@Model.Patient.Id" asp-route-editMode="true"
                        class="btn btn-warning btn-sm me-2">
-                        <i class="fas fa-edit me-1"></i> تعديل
+                        <i class="fas fa-edit me-1"></i>
+                        @SharedLocalizer["Edit"]
                     </a>
                 }
                 <a asp-action="PrintPatient" asp-route-id="@Model.Patient.Id"
                    class="btn btn-primary btn-sm me-2" target="_blank">
-                    <i class="fas fa-print me-1"></i> طباعة
+                    <i class="fas fa-print me-1"></i>
+                    @SharedLocalizer["Prints"]
                 </a>
             </div>
         </div>
@@ -62,7 +67,7 @@
                 <div class="card-header-custom">
                     <h4 class="mb-0">
                         <i class="fas fa-user me-2"></i>
-                        معلومات المريض
+                        @SharedLocalizer["PatientDetails"]
                     </h4>
                 </div>
                 <div class="card-body">
@@ -72,35 +77,35 @@
                         <div class="info-row">
                             <div class="info-label">
                                 <i class="fas fa-user me-2 text-primary-green"></i>
-                                الاسم الكامل
+                                @SharedLocalizer["Name"]
                             </div>
                             <div class="info-value">@Model.Patient.Name</div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">
                                 <i class="fas fa-user-circle me-2 text-primary-green"></i>
-                                العمر
+                                @SharedLocalizer["Age"]
                             </div>
-                            <div class="info-value">@Model.Patient.Age سنة</div>
+                            <div class="info-value">@Model.Patient.Age  @SharedLocalizer["year"]</div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">
                                 <i class="fas fa-ruler me-2 text-primary-green"></i>
-                                الطول
+                                @SharedLocalizer["Hight"]
                             </div>
-                            <div class="info-value">@Model.Patient.Hight سم</div>
+                            <div class="info-value">@Model.Patient.Hight  @SharedLocalizer["cm"]</div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">
                                 <i class="fas fa-briefcase me-2 text-primary-green"></i>
-                                الوظيفة
+                                @SharedLocalizer["Job"]
                             </div>
                             <div class="info-value">@Model.Patient.Job</div>
                         </div>
                         <div class="info-row">
                             <div class="info-label">
                                 <i class="fas fa-stethoscope me-2 text-primary-green"></i>
-                                التشخيص
+                                @SharedLocalizer["Diagnosis"]
                             </div>
                             <div class="info-value">
                                 <span class="badge-custom">@Model.Patient.Diagnosis</span>
@@ -109,7 +114,7 @@
                         <div class="info-row">
                             <div class="info-label">
                                 <i class="fas fa-note-sticky me-2 text-primary-green"></i>
-                                الملاحظات
+                                @SharedLocalizer["Notes"]
                             </div>
                             <div class="info-value">
                                 @Model.Patient.Notes
@@ -118,7 +123,7 @@
                         <div class="info-row">
                             <div class="info-label">
                                 <i class="fas fa-clock me-2 text-primary-green"></i>
-                                تاريخ التسجيل
+                                @SharedLocalizer["Date"]
                             </div>
                             <div class="info-value">@Model.Patient.CreatedOn.ToString("dd MMMM yyyy")</div>
                         </div>
@@ -135,7 +140,7 @@
                             <div class="form-group-custom mb-3">
                                 <label asp-for="Patient.Name" class="form-label">
                                     <i class="fas fa-user me-2 text-primary-green"></i>
-                                    الاسم الكامل
+                                    @SharedLocalizer["Name"]
                                 </label>
                                 <input asp-for="Patient.Name" class="form-control-custom" required />
                                 <span asp-validation-for="Patient.Name" class="text-danger"></span>
@@ -144,7 +149,7 @@
                             <div class="form-group-custom mb-3">
                                 <label asp-for="Patient.Age" class="form-label">
                                     <i class="fas fa-user-circle me-2 text-primary-green"></i>
-                                    العمر (سنة)
+                                    @SharedLocalizer["Age"]
                                 </label>
                                 <input asp-for="Patient.Age" type="number" class="form-control-custom" />
                                 <span asp-validation-for="Patient.Age" class="text-danger"></span>
@@ -153,7 +158,7 @@
                             <div class="form-group-custom mb-3">
                                 <label asp-for="Patient.Hight" class="form-label">
                                     <i class="fas fa-ruler me-2 text-primary-green"></i>
-                                    الطول (سم)
+                                    @SharedLocalizer["Hight"]
                                 </label>
                                 <input asp-for="Patient.Hight" type="number" step="0.01" class="form-control-custom" />
                                 <span asp-validation-for="Patient.Hight" class="text-danger"></span>
@@ -162,7 +167,7 @@
                             <div class="form-group-custom mb-3">
                                 <label asp-for="Patient.Job" class="form-label">
                                     <i class="fas fa-briefcase me-2 text-primary-green"></i>
-                                    الوظيفة
+                                    @SharedLocalizer["Job"]
                                 </label>
                                 <input asp-for="Patient.Job" class="form-control-custom" />
                                 <span asp-validation-for="Patient.Job" class="text-danger"></span>
@@ -171,7 +176,7 @@
                             <div class="form-group-custom mb-3">
                                 <label asp-for="Patient.Diagnosis" class="form-label">
                                     <i class="fas fa-stethoscope me-2 text-primary-green"></i>
-                                    التشخيص
+                                    @SharedLocalizer["Diagnosis"]
                                 </label>
                                 <input asp-for="Patient.Diagnosis" class="form-control-custom" />
                                 <span asp-validation-for="Patient.Diagnosis" class="text-danger"></span>
@@ -180,7 +185,7 @@
                             <div class="form-group-custom mb-3">
                                 <label asp-for="Patient.Notes" class="form-label">
                                     <i class="fas fa-note-sticky me-2 text-primary-green"></i>
-                                    الملاحظات
+                                    @SharedLocalizer["Notes"]
                                 </label>
                                 <textarea asp-for="Patient.Notes" class="form-control-custom" rows="3"></textarea>
                                 <span asp-validation-for="Patient.Notes" class="text-danger"></span>
@@ -189,11 +194,11 @@
                             <div class="mt-4">
                                 <button type="submit" class="btn-custom">
                                     <i class="fas fa-save me-2"></i>
-                                    حفظ التعديلات
+                                    @SharedLocalizer["SaveChanges"]
                                 </button>
                                 <a asp-action="PatientDetails" asp-route-id="@Model.Patient.Id" class="btn btn-secondary ms-2">
                                     <i class="fas fa-times me-2"></i>
-                                    إلغاء
+                                    @SharedLocalizer["Cancel"]
                                 </a>
                             </div>
                         </form>
@@ -208,7 +213,7 @@
                 <div class="card-header-custom">
                     <h4 class="mb-0">
                         <i class="fas fa-chart-simple me-2"></i>
-                        إضافة قياس جديد
+                        @SharedLocalizer["AddNewMeasurement"]
                     </h4>
                 </div>
                 <div class="card-body">
@@ -219,13 +224,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group-custom">
-                                    <label>الصدر (سم)</label>
+                                    <label>@SharedLocalizer["Chest"] (@SharedLocalizer["cm"])</label>
                                     <input name="Chest" type="number" step="0.1" min="0" max="900" class="form-control-custom" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group-custom">
-                                    <label>أعلى البطن (سم)</label>
+                                    <label>@SharedLocalizer["UpperAbdomen"]  (@SharedLocalizer["cm"])</label>
                                     <input name="UpperAbdomen" type="number" step="0.1" min="0" max="900" class="form-control-custom" />
                                 </div>
                             </div>
@@ -234,13 +239,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group-custom">
-                                    <label>أسفل البطن (سم)</label>
+                                    <label>@SharedLocalizer["LowerAbdomen"]  (@SharedLocalizer["cm"])</label>
                                     <input name="LowerAbdomen" type="number" step="0.1" min="0" max="900" class="form-control-custom" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group-custom">
-                                    <label>الأرداف (سم)</label>
+                                    <label> @SharedLocalizer["Buttocks"] (@SharedLocalizer["cm"])</label>
                                     <input name="Buttocks" type="number" step="0.1" min="0" max="900" class="form-control-custom" />
                                 </div>
                             </div>
@@ -249,13 +254,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group-custom">
-                                    <label>تاريخ القياس</label>
+                                    <label>@SharedLocalizer["MeasurementDate"]</label>
                                     <input name="MeasurementDate" type="date" class="form-control-custom" value="@DateTime.Today.ToString("yyyy-MM-dd")" required />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group-custom">
-                                    <label>الوزن (كجم)</label>
+                                    <label> @SharedLocalizer["Weight"] (@SharedLocalizer["kg"])</label>
                                     <input name="Weight" type="number" step="0.1" min="0" max="900" class="form-control-custom" />
                                 </div>
                             </div>
@@ -263,7 +268,7 @@
 
                         <button type="submit" class="btn-custom">
                             <i class="fas fa-save me-2"></i>
-                            حفظ القياس
+                            @SharedLocalizer["SaveMeasurement"]
                         </button>
                     </form>
                 </div>
@@ -271,14 +276,14 @@
         </div>
     </div>
 
-    <!-- Measurements History Section (يبقى كما هو) -->
+    <!-- Measurements History Section  -->
     <div class="row">
         <div class="col-12">
             <div class="info-card">
                 <div class="card-header-custom">
                     <h4 class="mb-0">
                         <i class="fas fa-history me-2"></i>    
-                        @Model.Measurements.Count إجمالي سجل القياسات
+                        @Model.Measurements.Count @SharedLocalizer["TotalMeasurements"]
                     </h4>
                     
                 </div>
@@ -289,12 +294,12 @@
                             <table class="measurement-table table table-hover">
                                 <thead>
                                     <tr>
-                                        <th><i class="fas fa-calendar"></i> التاريخ</th>
-                                        <th><i class="fas fa-weight-scale"></i> الوزن</th>
-                                        <th><i class="fas fa-heart"></i> الصدر</th>
-                                        <th><i class="fas fa-arrow-up"></i> أعلى البطن</th>
-                                        <th><i class="fas fa-arrow-down"></i> أسفل البطن</th>
-                                        <th><i class="fas fa-people-arrows"></i> الأرداف</th>
+                                        <th><i class="fas fa-calendar"></i> @SharedLocalizer["Date"]</th>
+                                        <th><i class="fas fa-weight-scale"></i> @SharedLocalizer["Weight"]</th>
+                                        <th><i class="fas fa-heart"></i> @SharedLocalizer["Chest"]</th>
+                                        <th><i class="fas fa-arrow-up"></i>@SharedLocalizer["UpperAbdomen"]</th>
+                                        <th><i class="fas fa-arrow-down"></i> @SharedLocalizer["LowerAbdomen"]</th>
+                                        <th><i class="fas fa-people-arrows"></i> @SharedLocalizer["Buttocks"]</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -302,11 +307,11 @@
                                     {
                                         <tr>
                                             <td class="fw-bold">@measurement.MeasurementDate.ToString("dd/MM/yyyy")</td>
-                                            <td>@measurement.Weight كجم</td>
-                                            <td>@measurement.Chest سم</td>
-                                            <td>@measurement.UpperAbdomen سم</td>
-                                            <td>@measurement.LowerAbdomen سم</td>
-                                            <td>@measurement.Buttocks سم</td>
+                                            <td>@measurement.Weight @SharedLocalizer["kg"]</td>
+                                            <td>@measurement.Chest @SharedLocalizer["cm"]</td>
+                                            <td>@measurement.UpperAbdomen  @SharedLocalizer["cm"]</td>
+                                            <td>@measurement.LowerAbdomen  @SharedLocalizer["cm"]</td>
+                                            <td>@measurement.Buttocks  @SharedLocalizer["cm"]</td>
                                         </tr>
                                     }
                                 </tbody>
@@ -317,8 +322,10 @@
                     {
                         <div class="empty-state">
                             <i class="fas fa-chart-line"></i>
-                            <h5 class="mt-3">لا توجد قياسات مسجلة</h5>
-                            <p class="text-muted">قم بإضافة أول قياس للمريض باستخدام النموذج المجاور</p>
+                            <h5 class="mt-3">
+                                @SharedLocalizer["NoMeasurementsWereRecorded"]
+                            </h5>
+                            <p class="text-muted">@SharedLocalizer["AddThePatient'sFirstMeasurementUsingTheAdjacentForm"]</p>
                         </div>
                     }
                 </div>

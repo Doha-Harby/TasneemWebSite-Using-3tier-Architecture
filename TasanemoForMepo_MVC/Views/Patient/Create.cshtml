@@ -1,7 +1,7 @@
 ﻿@using Tass_BLL.ViewModes.Patient
 @model CreatePatientVM
 @{
-    ViewData["Title"] = "إضافة مريض جديد";
+    ViewData["Title"] = @SharedLocalizer["AddNewPatient"];
 }
 @section Styles { 
     <link rel="stylesheet" href="~/css/CreatePatient.css" asp-append-version="true" />
@@ -14,7 +14,7 @@
                 <div class="card-header-custom">
                     <h4 class="mb-0">
                         <i class="fas fa-user-plus me-2"></i>
-                        إضافة مريض جديد
+                        @SharedLocalizer["AddNewPatient"]
                     </h4>
                 </div>
                 <div class="card-body">
@@ -22,7 +22,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group-custom">
-                                    <label asp-for="Name"></label>
+                                    <label asp-for="Name"> @SharedLocalizer["Name"] </label>
                                     <input asp-for="Name" class="form-control-custom" />
                                     <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
@@ -32,14 +32,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group-custom">
-                                    <label asp-for="Age"></label>
+                                    <label asp-for="Age"> @SharedLocalizer["Age"]</label>
                                     <input asp-for="Age" type="number" class="form-control-custom" />
                                     <span asp-validation-for="Age" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group-custom">
-                                    <label asp-for="Hight"></label>
+                                    <label asp-for="Hight">@SharedLocalizer["Hight"]</label>
                                     <input asp-for="Hight" type="number" step="0.1" class="form-control-custom" />
                                     <span asp-validation-for="Hight" class="text-danger"></span>
                                 </div>
@@ -49,14 +49,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group-custom">
-                                    <label asp-for="Job"></label>
+                                    <label asp-for="Job">@SharedLocalizer["Job"]</label>
                                     <input asp-for="Job" class="form-control-custom" />
                                     <span asp-validation-for="Job" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group-custom">
-                                    <label asp-for="Notes"></label>
+                                    <label asp-for="Notes">@SharedLocalizer["Notes"]</label>
                                     <input asp-for="Notes" type="text" class="form-control-custom" />
                                     <span asp-validation-for="Notes" class="text-danger"></span>
                                 </div>
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="form-group-custom">
-                            <label asp-for="Diagnosis"></label>
+                            <label asp-for="Diagnosis">@SharedLocalizer["Diagnosis"]</label>
                             <input asp-for="Diagnosis" class="form-control-custom" />
                             <span asp-validation-for="Diagnosis" class="text-danger"></span>
                         </div>
@@ -72,9 +72,9 @@
                         <div class="mt-4">
                             <button type="submit" class="btn-custom">
                                 <i class="fas fa-save me-2"></i>
-                                حفظ المريض
+                                @SharedLocalizer["SavePatient"]
                             </button>
-                            <a asp-action="Index" class="btn btn-light ms-2">إلغاء</a>
+                            <a asp-action="Index" class="btn btn-light ms-2">@SharedLocalizer["Cancel"]</a>
                         </div>
                     </form>
                 </div>

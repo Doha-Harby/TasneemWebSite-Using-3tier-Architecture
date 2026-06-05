@@ -12,12 +12,6 @@ namespace Tass_DAL.Repositories.Implementation
                 .FirstOrDefaultAsync(p => p.Id == id);
             return Patient ?? throw new KeyNotFoundException($"Patient with id: {id} not found");
         }
-        //public async Task<Measurements> CreateMeasurementAsync(Measurements measurement)
-        //{
-        //    await context.Measurements.AddAsync(measurement);
-        //    await context.SaveChangesAsync();
-        //    return measurement;
-        //}
         public async Task<bool> SoftDeleteAysnc(int id)
         {
             var entity = await GetByIdAsync(id);
