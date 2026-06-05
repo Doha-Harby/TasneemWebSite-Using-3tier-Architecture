@@ -21,11 +21,27 @@ namespace Tass_DAL.Repositories.Implementation
             await context.SaveChangesAsync();
             return true;
         }
+        public async Task<bool> HardDeleteAysnc(int id)
+        {
+            var entity = await context.Patients
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (entity == null) return false;
+
+            context.Patients.Remove(entity);
+            await context.SaveChangesAsync();
+            return true;
+        }
         public async Task<bool> RestoreAysnc(int id)
         {
-            var entity = await GetByIdAsync(id);
+            var entity = await context.Patients
+                .IgnoreQueryFilters()
+                .FirstOrDefaultAsync(p => p.Id == id);
+
             if (entity == null)
                 return false;
+
             entity.Restore();
             await context.SaveChangesAsync();
             return true;
