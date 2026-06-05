@@ -84,6 +84,7 @@
    📌 Future Improvements
       • Authentication & Authorization  
       • Notification
+      • Localization and Globalization    => Done
       • Web API version
   ---       
   🔐 Configuration & Security
